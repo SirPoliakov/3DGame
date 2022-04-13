@@ -29,14 +29,7 @@ struct Vector2
 
 	static Vector2 lerp(const Vector2& a, const Vector2& b, float f)
 	{
-		return Vector2(a - f * (b - a));
-	}
-
-	Vector2& operator-=(const Vector2& right)
-	{
-		x -= right.x;
-		y -= right.y;
-		return *this;
+		return Vector2(a + f * (b - a));
 	}
 
 	Vector2& operator+=(const Vector2& right)
@@ -46,10 +39,15 @@ struct Vector2
 		return *this;
 	}
 
-	Vector2& operator*=(float scalar)
+	friend Vector2 operator+(const Vector2& left, const Vector2& right)
 	{
-		x *= scalar;
-		y *= scalar;
+		return Vector2(left.x + right.x, left.y + right.y);
+	}
+
+	Vector2& operator-=(const Vector2& right)
+	{
+		x -= right.x;
+		y -= right.y;
 		return *this;
 	}
 
@@ -58,9 +56,11 @@ struct Vector2
 		return Vector2(left.x - right.x, left.y - right.y);
 	}
 
-	friend Vector2 operator+(const Vector2& left, const Vector2& right)
+	Vector2& operator*=(float scalar)
 	{
-		return Vector2(left.x + right.x, left.y + right.y);
+		x *= scalar;
+		y *= scalar;
+		return *this;
 	}
 
 	friend Vector2 operator*(const Vector2& vec, float scalar)

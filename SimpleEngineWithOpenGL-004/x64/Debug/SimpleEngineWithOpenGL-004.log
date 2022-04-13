@@ -1,10 +1,2 @@
-﻿  Actor.cpp
-  Astroid.cpp
-  Game.cpp
-  Grid.cpp
-  Laser.cpp
-  Main.cpp
-  SpriteComponent.cpp
-  Génération de code en cours...
-Grid.obj : error LNK2019: symbole externe non résolu "private: void __cdecl Grid::selectTile(unsigned __int64,unsigned __int64)" (?selectTile@Grid@@AEAAX_K0@Z) référencé dans la fonction "public: void __cdecl Grid::processClick(int,int)" (?processClick@Grid@@QEAAXHH@Z)
-C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\x64\Debug\SimpleEngineWithOpenGL-004.exe : fatal error LNK1120: 1 externes non résolus
+﻿  Game.cpp
+  SimpleEngineWithOpenGL-004.vcxproj -> C:\Users\jujuy\Documents\Git\SimpleEngine\x64\Debug\SimpleEngineWithOpenGL-004.exe

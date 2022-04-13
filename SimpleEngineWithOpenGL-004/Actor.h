@@ -1,9 +1,7 @@
 #pragma once
-
 #include <vector>
 #include "Vector2.h"
 #include <SDL_stdinc.h>
-
 using std::vector;
 
 class Game;
@@ -23,8 +21,6 @@ public:
 	Actor(const Actor&) = delete;
 	Actor& operator=(const Actor&) = delete;
 
-	Vector2 getForward() const;
-
 	Game& getGame() const { return game; }
 	const ActorState getState() const { return state; }
 	const Vector2 getPosition() const { return position; }
@@ -36,21 +32,22 @@ public:
 	void setRotation(float rotationP);
 	void setState(ActorState stateP);
 
+	Vector2 getForward() const;
+
+	void processInput(const Uint8* keyState);
+	virtual void actorInput(const Uint8* keyState);
 	void update(float dt);
 	void updateComponents(float dt);
 	virtual void updateActor(float dt);
 	void addComponent(Component* component);
 	void removeComponent(Component* component);
 
-	void processInput(const Uint8* keyState);
-	virtual void actorInput(const Uint8* keyState);
-
 private:
 	Game& game;
 	ActorState state;
 	Vector2 position;
 	float scale;
-	float rotation;  //Rotations in radians
+	float rotation;	// Rotation in radians
 
 	vector<Component*> components;
-}; 
+};

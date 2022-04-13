@@ -3,9 +3,11 @@
 #include "Actor.h"
 #include "Window.h"
 
-MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP) : Component(ownerP, updateOrderP), forwardSpeed(0.0f), angularSpeed(0.0f) {}
+MoveComponent::MoveComponent(Actor* ownerP, int updateOrderP)
+	: Component(ownerP, updateOrderP), forwardSpeed(0.0f), angularSpeed(0.0f)
+{
 
-MoveComponent::~MoveComponent(){}
+}
 
 void MoveComponent::setForwardSpeed(float forwardSpeedP)
 {
@@ -14,7 +16,7 @@ void MoveComponent::setForwardSpeed(float forwardSpeedP)
 
 void MoveComponent::setAngularSpeed(float angularSpeedP)
 {
-	forwardSpeed = angularSpeedP;
+	angularSpeed = angularSpeedP;
 }
 
 void MoveComponent::update(float dt)
@@ -26,7 +28,7 @@ void MoveComponent::update(float dt)
 	}
 	if (!Maths::nearZero(forwardSpeed))
 	{
-		Vector2 newPosition = owner.getForward() * forwardSpeed * dt;
+		Vector2 newPosition = owner.getPosition() + owner.getForward() * forwardSpeed * dt;
 
 		// Screen wrapping (for asteroids)
 		if (newPosition.x < 0) { newPosition.x = WINDOW_WIDTH; }

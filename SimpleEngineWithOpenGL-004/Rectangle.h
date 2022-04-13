@@ -30,4 +30,6 @@ struct Rectangle
 	{
 		return !(left == right);
 	}
+
+	static const Rectangle nullRect;
 };

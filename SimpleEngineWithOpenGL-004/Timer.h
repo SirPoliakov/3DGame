@@ -27,4 +27,3 @@ private:
 	// Time it tooks to run the loop. Used to cap framerate.
 	unsigned int frameTime;
 };
-

@@ -1,11 +1,9 @@
 #include "CircleCollisionComponent.h"
 #include "Actor.h"
 
-CircleCollisionComponent::CircleCollisionComponent(Actor* owner) :
-	Component(owner), radius(1.0f)
-{}
-
-CircleCollisionComponent::~CircleCollisionComponent(){}
+CircleCollisionComponent::CircleCollisionComponent(Actor* owner) : Component(owner), radius(1.0f)
+{
+}
 
 float CircleCollisionComponent::getRadius() const
 {
@@ -22,13 +20,12 @@ const Vector2 CircleCollisionComponent::getCenter() const
 	return owner.getPosition();
 }
 
-bool intersect(const CircleCollisionComponent& a, const CircleCollisionComponent& b)
+bool Intersect(const CircleCollisionComponent& a, const CircleCollisionComponent& b)
 {
 	Vector2 aCenter = a.getCenter();
 	Vector2 bCenter = b.getCenter();
 	Vector2 ab = bCenter - aCenter;
-
 	float distSq = ab.lengthSq();
 	float sumOfRadius = a.getRadius() + b.getRadius();
-	return (distSq <= sumOfRadius * sumOfRadius);
+	return distSq <= sumOfRadius * sumOfRadius;
 }

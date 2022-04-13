@@ -1,12 +1,11 @@
 #pragma once
 #include <vector>
+#include "Actor.h"
+#include "SpriteComponent.h"
 #include "Window.h"
 #include "Renderer.h"
 #include "Vector2.h"
-#include "Actor.h"
 #include "Astroid.h"
-#include "Grid.h"
-
 using std::vector;
 
 class Game
@@ -24,21 +23,20 @@ public:
 	Game& operator=(Game&&) = delete;
 
 private:
-	Game() : isRunning(true), isUpdatingActors(false), grid(nullptr) {}
+	Game() : isRunning(true), isUpdatingActors(false) {}
 
 public:
 	bool initialize();
 	void load();
-	void unload();
 	void loop();
+	void unload();
 	void close();
 
 	void addActor(Actor* actor);
 	void removeActor(Actor* actor);
 
-	Renderer getRenderer();
-
-	//Game Specific
+	Renderer& getRenderer() { return renderer; }
+	// Game specific
 	vector<Astroid*>& getAstroids();
 	void addAstroid(Astroid* astroid);
 	void removeAstroid(Astroid* astroid);
@@ -56,7 +54,6 @@ private:
 	vector<Actor*> actors;
 	vector<Actor*> pendingActors;
 
-	// Game Specific
+	// Game specific
 	vector<Astroid*> astroids;
-	Grid* grid;
 };

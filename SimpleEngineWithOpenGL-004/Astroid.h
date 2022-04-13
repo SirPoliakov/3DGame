@@ -1,6 +1,6 @@
 #pragma once
-#include "CircleCollisionComponent.h"
 #include "Actor.h"
+#include "CircleCollisionComponent.h"
 
 class Astroid : public Actor
 {

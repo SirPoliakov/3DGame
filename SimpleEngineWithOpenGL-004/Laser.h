@@ -13,3 +13,4 @@ private:
 	CircleCollisionComponent* collision;
 	float deathTimer;
 };
+;

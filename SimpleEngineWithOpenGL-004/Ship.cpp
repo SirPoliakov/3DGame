@@ -13,11 +13,9 @@ Ship::Ship() : Actor(), laserCooldown(0.0f)
 	ic->setMaxAngularSpeed(Maths::twoPi);
 }
 
-Ship::~Ship(){}
-
 void Ship::actorInput(const Uint8* keyState)
 {
-	if (keyState[SDL_SCANCODE_SPACE] && (laserCooldown <= 0.0f))
+	if (keyState[SDL_SCANCODE_SPACE] && laserCooldown <= 0.0f)
 	{
 		Laser* laser = new Laser();
 		laser->setPosition(getPosition());

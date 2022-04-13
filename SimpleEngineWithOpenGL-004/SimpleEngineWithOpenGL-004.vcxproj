@@ -75,8 +75,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2-2.0.12\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_ttf-2.0.15\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_mixer-2.0.4\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_image-2.0.5\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\rapidjson\include\rapidjson;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\glew-2.1.0\include\GL;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2-2.0.12\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_ttf-2.0.15\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_mixer-2.0.4\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_image-2.0.5\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\glew-2.1.0\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2-2.0.12\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_ttf-2.0.15\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_mixer-2.0.4\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_image-2.0.5\include;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\rapidjson\include\rapidjson;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\glew-2.1.0\include\GL;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\inc;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\lowlevel\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2-2.0.12\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_ttf-2.0.15\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_mixer-2.0.4\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\SDL2_image-2.0.5\lib\x64;C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\SDL\glew-2.1.0\lib\Release\x64;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\studio\lib;C:\Program Files (x86)\FMOD SoundSystem\FMOD Studio API Windows\api\lowlevel\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -106,7 +106,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2_image.lib;opengl32.lib;glew32.lib;fmodL64_vc.lib;fmodstudioL64_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -150,18 +150,17 @@
     <ClCompile Include="CircleCollisionComponent.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -175,7 +174,6 @@
     <ClInclude Include="CircleCollisionComponent.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Grid.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="Log.h" />
@@ -187,7 +185,6 @@
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="Tile.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Window.h" />

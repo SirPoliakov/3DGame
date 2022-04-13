@@ -5,9 +5,10 @@
 class InputComponent : public MoveComponent
 {
 public:
-
 	InputComponent(Actor* ownerP);
-	~InputComponent();
+	InputComponent() = delete;
+	InputComponent(const InputComponent&) = delete;
+	InputComponent& operator=(const InputComponent&) = delete;
 
 	void processInput(const Uint8* keyState);
 
@@ -17,6 +18,7 @@ public:
 	void setBackKey(int key);
 	void setClockwiseKey(int key);
 	void setCounterClockwiseKey(int key);
+
 
 private:
 	float maxForwardSpeed;

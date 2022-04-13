@@ -17,7 +17,7 @@ namespace Maths
 
 	inline float toDegrees(float radians)
 	{
-		return radians * 180.0f * pi;
+		return radians * 180.0f / pi;
 	}
 
 	inline bool nearZero(float val, float epsilon = 0.001f)
@@ -26,24 +26,25 @@ namespace Maths
 		{
 			return true;
 		}
-		else {
+		else
+		{
 			return false;
 		}
 	}
 
-	template<typename T>
+	template <typename T>
 	T max(const T& a, const T& b)
 	{
 		return (a < b ? b : a);
 	}
 
-	template<typename T>
+	template <typename T>
 	T min(const T& a, const T& b)
 	{
 		return (a < b ? a : b);
 	}
 
-	template<typename T>
+	template <typename T>
 	T clamp(const T& value, const T& lower, const T& upper)
 	{
 		return min(upper, max(lower, value));
@@ -54,7 +55,7 @@ namespace Maths
 		return fabs(value);
 	}
 
-	inline float cos(float angle) 
+	inline float cos(float angle)
 	{
 		return cosf(angle);
 	}
@@ -76,7 +77,12 @@ namespace Maths
 
 	inline float atan2(float y, float x)
 	{
-		return atan2f(y,x);
+		return atan2f(y, x);
+	}
+
+	inline float cot(float angle)
+	{
+		return 1.0f / tan(angle);
 	}
 
 	inline float lerp(float a, float b, float f)

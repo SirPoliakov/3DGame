@@ -9,9 +9,8 @@ InputComponent::InputComponent(Actor* ownerP) :
 	backKey(SDL_SCANCODE_S),
 	clockwiseKey(SDL_SCANCODE_D),
 	counterClockwiseKey(SDL_SCANCODE_A)
-{}
-
-InputComponent::~InputComponent(){}
+{
+}
 
 void InputComponent::processInput(const Uint8* keyState)
 {

@@ -79,7 +79,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <PublicIncludeDirectories>$(PublicIncludeDirectories)</PublicIncludeDirectories>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryPath>../SDL/SDL2-2.0.12/lib/x64;../SDL/SDL2_ttf-2.0.15/lib/x64;../SDL/SDL2_mixer-2.0.4/lib/x64;../SDL/SDL2_image-2.0.5/lib/x64;../SDL/glew-2.1.0/lib/Release/x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>../SDL/SDL2_ttf-2.0.15/include;../SDL/SDL2-2.0.12/include;../SDL/SDL2_mixer-2.0.4/include;../SDL/SDL2_image-2.0.5/include;../SDL/rapidjson/include/rapidjson;/SDL/glew-2.1.0/include/GL;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -156,22 +157,18 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="InputComponent.h" />
-    <ClInclude Include="IRenderer.h" />
     <ClInclude Include="Laser.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Rectangle.h" />
-    <ClInclude Include="RendererOGL.h" />
-    <ClInclude Include="RendererSDL.h" />
-    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Renderer.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpriteComponent.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vector2.h" />
-    <ClInclude Include="VertexArray.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -190,15 +187,12 @@
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rectangle.cpp" />
-    <ClCompile Include="RendererOGL.cpp" />
-    <ClCompile Include="RendererSDL.cpp" />
-    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SpriteComponent.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="VertexArray.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

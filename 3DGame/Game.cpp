@@ -7,7 +7,6 @@
 #include "BackgroundSpriteComponent.h"
 #include "Astroid.h"
 #include "Ship.h"
-#include "RendererOGL.h"
 
 bool Game::initialize()
 {
@@ -29,9 +28,6 @@ void Game::load()
 	Assets::loadTexture(renderer, "Ressources\\Astroid.png", "Astroid");
 	Assets::loadTexture(renderer, "Ressources\\Ship.png", "Ship");
 	Assets::loadTexture(renderer, "Ressources\\Laser.png", "Laser");
-
-
-	Assets::loadShader("Ressources\\Shaders\\Basic.vert", "Ressources\\Shaders\\Basic.frag", "", "", "", "Basic");
 
 	// Single sprite
 	/*

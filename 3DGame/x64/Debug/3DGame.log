@@ -1,11 +1,2 @@
-﻿  Actor.cpp
-  Assets.cpp
-  Astroid.cpp
-  Game.cpp
-  Laser.cpp
-  Main.cpp
-  RendererOGL.cpp
-  Ship.cpp
-  SpriteComponent.cpp
-  Génération de code en cours...
-  3DGame.vcxproj -> C:\Users\jujuy\Desktop\C++ Work\SimpleEngine\x64\Debug\3DGame.exe
+﻿  Game.cpp
+  3DGame.vcxproj -> C:\Users\jujuy\Documents\Git\MeteorGame_3DGame\x64\Debug\3DGame.exe

@@ -1,8 +1,9 @@
 #include "Texture.h"
 #include "Log.h"
 #include <SDL_image.h>
+#include <sstream>
 
-Texture::Texture() : filename(""), width(0), height(0), SDLTexture(nullptr)
+Texture::Texture(): textureID(0), filename(""), width(0), height(0), SDLTexture(nullptr)
 {
 }
 
@@ -16,9 +17,13 @@ void Texture::unload()
 	{
 		SDL_DestroyTexture(SDLTexture);
 	}
+	else
+	{
+		glDeleteTextures(1, &textureID);
+	}
 }
 
-bool Texture::load(Renderer& renderer, const string& filenameP)
+bool Texture::loadOGL(RendererOGL& renderer, const string& filenameP)
 {
 	filename = filenameP;
 	// Load from file
@@ -30,16 +35,26 @@ bool Texture::load(Renderer& renderer, const string& filenameP)
 	}
 	width = surf->w;
 	height = surf->h;
-
-	// Create texture from surface
-	SDLTexture = SDL_CreateTextureFromSurface(renderer.toSDLRenderer(), surf);
-	SDL_FreeSurface(surf);
-	if (!SDLTexture)
+	int format = 0;
+	if (surf->format->format == SDL_PIXELFORMAT_RGB24)
 	{
-		Log::error(LogCategory::Render, "Failed to convert surface to texture for " + filename);
-		return false;
+		format = GL_RGB;
 	}
+	else if (surf->format->format == SDL_PIXELFORMAT_RGBA32)
+	{
+		format = GL_RGBA;
+	}
+	glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, surf->pixels);
+	SDL_FreeSurface(surf);
+
+
 	Log::info("Loaded texture " + filename);
+	// Enable bilinear filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
 	return true;
 }
 
@@ -47,4 +62,9 @@ void Texture::updateInfo(int& widthOut, int& heightOut)
 {
 	widthOut = width;
 	heightOut = height;
+}
+
+void Texture::setActive() const
+{
+	glBindTexture(GL_TEXTURE_2D, textureID);
 }

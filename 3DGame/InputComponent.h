@@ -29,3 +29,4 @@ private:
 	int clockwiseKey;
 	int counterClockwiseKey;
 };
+

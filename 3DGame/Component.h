@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL_stdinc.h>
 
+
 class Actor;
 
 class Component
@@ -16,8 +17,10 @@ public:
 
 	virtual void processInput(const Uint8* keyState);
 	virtual void update(float dt);
+	virtual void onUpdateWorldTransform() {}
 
 protected:
 	Actor& owner;
 	int updateOrder;		// Order of the component in the actor's updateComponent method
 };
+

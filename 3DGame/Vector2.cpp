@@ -13,7 +13,7 @@ void Vector2::set(float xP, float yP)
 
 float Vector2::lengthSq() const
 {
-	return x * x + y * y;
+	return x*x + y*y;
 }
 
 float Vector2::length() const

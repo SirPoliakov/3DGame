@@ -1,7 +1,7 @@
 #include "Component.h"
 #include "Actor.h"
 
-Component::Component(Actor* ownerP, int updateOrderP) :
+Component::Component(Actor* ownerP, int updateOrderP):
 	owner(*ownerP),
 	updateOrder(updateOrderP)
 {

@@ -9,13 +9,15 @@
 #include <glew.h>
 #include <SDL_image.h>
 
-RendererOGL::RendererOGL() :
+RendererOGL::RendererOGL():
 	window(nullptr),
 	context(nullptr),
 	spriteVertexArray(nullptr),
 	spriteViewProj(Matrix4::createSimpleViewProj(WINDOW_WIDTH, WINDOW_HEIGHT)),
 	view(Matrix4::createLookAt(Vector3::zero, Vector3::unitX, Vector3::unitZ)),
-	projection(Matrix4::createPerspectiveFOV(Maths::toRadians(70.0f), WINDOW_WIDTH, WINDOW_HEIGHT, 25.0f, 10000.0f))
+	projection(Matrix4::createPerspectiveFOV(Maths::toRadians(70.0f), WINDOW_WIDTH, WINDOW_HEIGHT, 25.0f, 10000.0f)),
+	ambientLight(Vector3(1.0f, 1.0f, 1.0f)),
+	dirLight({ Vector3::zero, Vector3::zero, Vector3::zero })
 {
 }
 
@@ -44,7 +46,7 @@ bool RendererOGL::initialize(Window& windowP)
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
 	// OpenGL Context
-	context = SDL_GL_CreateContext(window->getSDLWindow());
+	context = SDL_GL_CreateContext(windowP.getSDLWindow());
 
 	// GLEW
 	glewExperimental = GL_TRUE;
@@ -64,7 +66,7 @@ bool RendererOGL::initialize(Window& windowP)
 	}
 
 	spriteVertexArray = new VertexArray(spriteVertices, 4, indices, 6);
-	return true;
+    return true;
 }
 
 void RendererOGL::beginDraw()
@@ -77,7 +79,7 @@ void RendererOGL::beginDraw()
 void RendererOGL::draw()
 {
 	drawMeshes();
-	//drawSprites();
+	drawSprites();
 }
 
 void RendererOGL::endDraw()
@@ -96,12 +98,16 @@ void RendererOGL::drawMeshes()
 	// Enable depth buffering/disable alpha blend
 	glEnable(GL_DEPTH_TEST);
 	glDisable(GL_BLEND);
-	Assets::getShader("BasicMesh").use();
+	Shader& shader = Assets::getShader("Phong");
+	shader.use();
 	// Update view-projection matrix
-	Assets::getShader("BasicMesh").setMatrix4("uViewProj", view * projection);
+	shader.setMatrix4("uViewProj", view * projection);
+	// Lights
+	setLightUniforms(shader);
+	// Draw
 	for (auto mc : meshes)
 	{
-		mc->draw(Assets::getShader("BasicMesh"));
+		mc->draw(Assets::getShader("Phong"));
 	}
 }
 
@@ -128,7 +134,7 @@ void RendererOGL::drawSprites()
 	glDisable(GL_DEPTH_TEST);
 	// Enable alpha blending on the color buffer
 	glEnable(GL_BLEND);
-	//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glBlendEquationSeparate(GL_FUNC_ADD, GL_FUNC_ADD);
 	glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ZERO);
 
@@ -148,9 +154,7 @@ void RendererOGL::drawSprite(const Actor& actor, const Texture& tex, Rectangle s
 {
 	Matrix4 scaleMat = Matrix4::createScale((float)tex.getWidth(), (float)tex.getHeight(), 1.0f);
 	Matrix4 world = scaleMat * actor.getWorldTransform();
-	Matrix4 pixelTranslation = Matrix4::createTranslation(Vector3(-WINDOW_WIDTH / 2 - origin.x, -WINDOW_HEIGHT / 2 - origin.y, 0.0f)); // Screen pixel coordinates
-	Shader& spriteShader = Assets::getShader("Sprite");
-	spriteShader.setMatrix4("uWorldTransform", world * pixelTranslation);
+	Assets::getShader("Sprite").setMatrix4("uWorldTransform", world);
 	tex.setActive();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 }
@@ -169,4 +173,24 @@ void RendererOGL::removeMesh(MeshComponent* mesh)
 void RendererOGL::setViewMatrix(const Matrix4& viewP)
 {
 	view = viewP;
+}
+
+void RendererOGL::setLightUniforms(Shader& shader)
+{
+	// Camera position is from inverted view
+	Matrix4 invertedView = view;
+	invertedView.invert();
+	shader.setVector3f("uCameraPos", invertedView.getTranslation());
+	// Ambient
+	shader.setVector3f("uAmbientLight", ambientLight);
+	// Directional light
+	shader.setVector3f("uDirLight.direction", dirLight.direction);
+	shader.setVector3f("uDirLight.diffuseColor", dirLight.diffuseColor);
+	shader.setVector3f("uDirLight.specColor", dirLight.specColor);
+
+}
+
+void RendererOGL::setAmbientLight(const Vector3& ambientP)
+{
+	ambientLight = ambientP;
 }

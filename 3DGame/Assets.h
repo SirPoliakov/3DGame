@@ -21,14 +21,8 @@ public:
     // Loads a texture from file
     static Texture loadTexture(IRenderer& renderer, const string& filename, const string& name);
 
-    // Load a mesh from file
-    static Mesh loadMesh(const string& filename, const string& namme);
-
     // Retrieves a stored texture
     static Texture& getTexture(const std::string& name);
-
-    // Retrieve a stored mesh
-    static Mesh& getMesh(const std::string& name);
 
     // Loads (and generates) a shader program from file loading vertex, fragment (and tessellation control, evaluation,
     // geometry) shader's source code. If tcShaderFile, teShaderFile, gShaderFile are not nullptr, it also loads
@@ -39,6 +33,12 @@ public:
 
     // Retrieves a stored shader
     static Shader& getShader(const std::string& name);
+
+    // Loads a mesh from file
+    static Mesh loadMesh(const string& filename, const string& name);
+
+    // Retrieves a stored mesh
+    static Mesh& getMesh(const std::string& name);
 
     // Properly de-allocates all loaded resources
     static void clear();
@@ -53,7 +53,8 @@ private:
     static Shader loadShaderFromFile(const std::string& vShaderFile, const std::string& fShaderFile,
                                      const std::string& tcShaderFile = "", const std::string& teShaderFile = "",
                                      const std::string& gShaderFile = "");
-    
-    static Mesh loadMeshFromFile(const string& name);
+
+    static Mesh loadMeshFromFile(const string& filename);
 
 };
+

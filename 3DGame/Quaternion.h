@@ -1,6 +1,5 @@
 #pragma once
 #include "Vector3.h"
-
 class Quaternion
 {
 public:
@@ -128,3 +127,4 @@ public:
 
 	static const Quaternion identity;
 };
+

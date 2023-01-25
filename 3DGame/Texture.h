@@ -10,6 +10,7 @@ public:
 	~Texture();
 
 	void unload();
+	//bool loadSDL(RendererSDL& rendererP, const string& filenameP);
 	bool loadOGL(RendererOGL& rendererP, const string& filenameP);
 
 	inline SDL_Texture* toSDLTexture() const { return SDLTexture; }

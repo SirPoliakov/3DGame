@@ -4,7 +4,7 @@
 #include "Component.h"
 #include "Maths.h"
 
-Actor::Actor():
+Actor::Actor() :
 	state(Actor::ActorState::Active),
 	position(Vector3::zero),
 	scale(1.0f),

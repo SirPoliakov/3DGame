@@ -1,2 +1,8 @@
-﻿  Game.cpp
+﻿  Assets.cpp
+C:\Users\jujuy\Documents\Git\3DGame\3DGame\Assets.cpp(262,33): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\jujuy\Documents\Git\3DGame\3DGame\Assets.cpp(279,168): warning C4267: 'argument' : conversion de 'size_t' en 'unsigned int', perte possible de données
+  BackgroundSpriteComponent.cpp
+  VertexArray.cpp
+C:\Users\jujuy\Documents\Git\3DGame\3DGame\VertexArray.cpp(14,49): warning C4244: 'argument' : conversion de 'double' en 'GLsizeiptr', perte possible de données
+  Génération de code en cours...
   3DGame.vcxproj -> C:\Users\jujuy\Documents\Git\3DGame\x64\Debug\3DGame.exe

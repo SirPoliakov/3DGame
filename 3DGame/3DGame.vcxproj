@@ -39,7 +39,6 @@
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Quaternion.h" />
-    <ClInclude Include="Random.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="RendererOGL.h" />
     <ClInclude Include="Shader.h" />
@@ -71,7 +70,6 @@
     <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Quaternion.cpp" />
-    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="RendererOGL.cpp" />
     <ClCompile Include="Shader.cpp" />

@@ -32,17 +32,24 @@ void Game::load()
 	Assets::loadMesh("Res\\Meshes\\Sphere.gpmesh", "Mesh_Sphere");
 	
 	camera = new Camera();
-
-	Cube* a = new Cube();
-	a->setPosition(Vector3(200.0f, 105.0f, 0.0f));
-	a->setScale(100.0f);
 	Quaternion q(Vector3::unitY, -Maths::piOver2);
 	q = Quaternion::concatenate(q, Quaternion(Vector3::unitZ, Maths::pi + Maths::pi / 4.0f));
-	a->setRotation(q);
+	Cube* a;
+	int y = 50.0f; 
+	for (int i = 0; i < 5; i++)
+	{
+			a = new Cube(); 
+			a->setPosition(Vector3(400.0f, 100.0f, 0.0f));
+			a->setScale(100.0f);
+			y += 100;
+			a->setRotation(q);
+	}	
+	
+	
 	
 	Sphere* b = new Sphere();
 	b->setPosition(Vector3(200.0f, -75.0f, 0.0f));
-	b->setScale(3.0f);
+	b->setScale(2.0f);
 
 	// Floor and walls
 
@@ -188,7 +195,6 @@ void Game::loop()
 void Game::unload()
 {
 	// Delete actors
-	// Because ~Actor calls RemoveActor, have to use a different style loop
 	while (!actors.empty())
 	{
 		delete actors.back();
